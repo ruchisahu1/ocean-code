@@ -1,0 +1,322 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 216 50% 6%;
+    --foreground: 195 100% 90%;
+
+    --card: 216 45% 10%;
+    --card-foreground: 195 100% 90%;
+
+    --popover: 216 45% 10%;
+    --popover-foreground: 195 100% 90%;
+
+    --primary: 190 100% 50%;
+    --primary-foreground: 216 50% 6%;
+
+    --secondary: 216 40% 16%;
+    --secondary-foreground: 195 80% 80%;
+
+    --muted: 216 35% 14%;
+    --muted-foreground: 200 30% 55%;
+
+    --accent: 160 100% 45%;
+    --accent-foreground: 216 50% 6%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 210 40% 20%;
+    --input: 210 40% 20%;
+    --ring: 190 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Ocean-specific tokens (brighter for real water feel) */
+    --ocean-deep: 210 65% 10%;
+    --ocean-mid: 200 60% 22%;
+    --ocean-shallow: 195 55% 32%;
+    --ocean-surface: 190 60% 40%;
+    
+    --glow-cyan: 190 100% 50%;
+    --glow-green: 160 100% 45%;
+    --glow-purple: 270 80% 60%;
+    --glow-amber: 40 100% 55%;
+    
+    --oxygen: 190 90% 55%;
+    --danger: 0 72% 51%;
+    --success: 160 100% 45%;
+    --warning: 40 100% 55%;
+
+    --sidebar-background: 216 50% 8%;
+    --sidebar-foreground: 195 100% 90%;
+    --sidebar-primary: 190 100% 50%;
+    --sidebar-primary-foreground: 216 50% 6%;
+    --sidebar-accent: 216 40% 16%;
+    --sidebar-accent-foreground: 195 80% 80%;
+    --sidebar-border: 210 40% 20%;
+    --sidebar-ring: 190 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Orbitron', sans-serif;
+  }
+  .font-body {
+    font-family: 'Inter', sans-serif;
+  }
+
+  .glow-cyan {
+    text-shadow: 0 0 10px hsl(var(--glow-cyan) / 0.6), 0 0 30px hsl(var(--glow-cyan) / 0.3);
+  }
+  .glow-green {
+    text-shadow: 0 0 10px hsl(var(--glow-green) / 0.6), 0 0 30px hsl(var(--glow-green) / 0.3);
+  }
+  .box-glow-cyan {
+    box-shadow: 0 0 15px hsl(var(--glow-cyan) / 0.3), 0 0 40px hsl(var(--glow-cyan) / 0.1), inset 0 0 15px hsl(var(--glow-cyan) / 0.05);
+  }
+  .box-glow-green {
+    box-shadow: 0 0 15px hsl(var(--glow-green) / 0.3), 0 0 40px hsl(var(--glow-green) / 0.1);
+  }
+  .box-glow-purple {
+    box-shadow: 0 0 15px hsl(var(--glow-purple) / 0.3), 0 0 40px hsl(var(--glow-purple) / 0.1);
+  }
+  .box-glow-amber {
+    box-shadow: 0 0 15px hsl(var(--glow-amber) / 0.3), 0 0 40px hsl(var(--glow-amber) / 0.1);
+  }
+
+  .ocean-gradient {
+    background: linear-gradient(180deg, hsl(var(--ocean-shallow)), hsl(var(--ocean-mid)), hsl(var(--ocean-deep)));
+  }
+  .ocean-gradient-deep {
+    background: linear-gradient(180deg, hsl(var(--ocean-mid)), hsl(var(--ocean-deep)));
+  }
+  .ocean-gradient-water {
+    background: linear-gradient(180deg, #0c5e78 0%, #0a4a65 25%, #083a52 50%, #062c40 75%, #041e2e 100%);
+  }
+}
+
+/* Bubble animation */
+@keyframes bubble-rise {
+  0% { transform: translateY(100%) scale(0.4); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.3; }
+  100% { transform: translateY(-100vh) scale(1); opacity: 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes sonar-ping {
+  0% { transform: scale(0.5); opacity: 0.8; }
+  100% { transform: scale(3); opacity: 0; }
+}
+
+.animate-bubble {
+  animation: bubble-rise linear infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-sonar {
+  animation: sonar-ping 2s ease-out infinite;
+}
+
+/* ── Water caustics ─────────────────────────────────────────── */
+@keyframes water-caustics {
+  0%   { background-position: 0% 0%; }
+  25%  { background-position: 50% 30%; }
+  50%  { background-position: 100% 60%; }
+  75%  { background-position: 30% 100%; }
+  100% { background-position: 0% 0%; }
+}
+
+@keyframes water-caustics-alt {
+  0%   { background-position: 100% 100%; }
+  33%  { background-position: 30% 50%; }
+  66%  { background-position: 70% 20%; }
+  100% { background-position: 100% 100%; }
+}
+
+.animate-water-caustics {
+  animation: water-caustics 12s ease-in-out infinite;
+}
+
+.animate-water-caustics-alt {
+  animation: water-caustics-alt 18s ease-in-out infinite;
+}
+
+/* ── Wave drift ─────────────────────────────────────────────── */
+@keyframes wave-drift {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-wave-drift {
+  animation: wave-drift 8s linear infinite;
+}
+
+/* ── Light ray drift ────────────────────────────────────────── */
+@keyframes ray-drift {
+  0%, 100% { transform: rotate(8deg) translateX(0); }
+  50%      { transform: rotate(8deg) translateX(20px); }
+}
+
+@keyframes ray-drift-slow {
+  0%, 100% { transform: rotate(-5deg) translateX(0); }
+  50%      { transform: rotate(-5deg) translateX(-15px); }
+}
+
+.animate-ray-drift {
+  animation: ray-drift 10s ease-in-out infinite;
+}
+
+.animate-ray-drift-slow {
+  animation: ray-drift-slow 14s ease-in-out infinite;
+}
+
+/* ── Fish tail flick ────────────────────────────────────────── */
+@keyframes tail-flick {
+  0%, 100% { transform: scaleX(1) rotate(0deg); }
+  25%      { transform: scaleX(0.85) rotate(8deg); }
+  75%      { transform: scaleX(0.85) rotate(-8deg); }
+}
+
+.animate-tail-flick {
+  animation: tail-flick 0.6s ease-in-out infinite;
+  transform-origin: left center;
+}
+
+/* ── Seaweed sway ───────────────────────────────────────────── */
+@keyframes sway {
+  0%, 100% { transform: rotate(-4deg); }
+  50%      { transform: rotate(4deg); }
+}
+
+.animate-sway {
+  animation: sway 3s ease-in-out infinite;
+}
+
+/* ── Beacon pulse (treasure goal) ───────────────────────────── */
+@keyframes beacon-pulse {
+  0%   { transform: scale(1); opacity: 0.4; }
+  50%  { transform: scale(1.25); opacity: 0.15; }
+  100% { transform: scale(1); opacity: 0.4; }
+}
+
+.animate-beacon-pulse {
+  animation: beacon-pulse 2.5s ease-in-out infinite;
+  transform-origin: center;
+}
+
+/* ── Ship scene: lantern flicker ──────────────────────────────── */
+@keyframes lantern-flicker {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  25%      { opacity: 0.9; transform: scale(1.04); }
+  50%      { opacity: 0.6; transform: scale(0.97); }
+  75%      { opacity: 1;   transform: scale(1.02); }
+}
+
+.animate-lantern-flicker {
+  animation: lantern-flicker 4s ease-in-out infinite;
+}
+
+/* ── Ship scene: dust drift ──────────────────────────────────── */
+@keyframes dust-drift {
+  0%, 100% { transform: translate(0, 0); }
+  33%      { transform: translate(4px, -6px); }
+  66%      { transform: translate(-3px, 3px); }
+}
+
+.animate-dust-drift {
+  animation: dust-drift 10s ease-in-out infinite;
+}
+
+/* CodeMirror theme overrides */
+.cm-editor {
+  background: hsl(216 50% 6%) !important;
+  font-size: 14px !important;
+}
+.cm-editor .cm-gutters {
+  background: hsl(216 45% 8%) !important;
+  border-right: 1px solid hsl(210 40% 20%) !important;
+  color: hsl(200 30% 40%) !important;
+}
+.cm-editor .cm-activeLineGutter {
+  background: hsl(216 40% 12%) !important;
+}
+.cm-editor .cm-activeLine {
+  background: hsl(216 40% 10%) !important;
+}
+.cm-editor .cm-selectionBackground {
+  background: hsl(190 100% 50% / 0.15) !important;
+}
+.cm-editor .cm-cursor {
+  border-left-color: hsl(190 100% 50%) !important;
+}
+
+/* Autocomplete dropdown styling */
+.cm-editor .cm-tooltip-autocomplete {
+  background: hsl(216 50% 8%) !important;
+  border: 1px solid hsl(190 100% 50% / 0.3) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 12px hsl(190 100% 50% / 0.1) !important;
+  overflow: hidden !important;
+}
+.cm-editor .cm-tooltip-autocomplete > ul {
+  font-family: 'Inter', monospace !important;
+  font-size: 13px !important;
+}
+.cm-editor .cm-tooltip-autocomplete > ul > li {
+  padding: 4px 10px !important;
+  color: hsl(195 100% 85%) !important;
+}
+.cm-editor .cm-tooltip-autocomplete > ul > li[aria-selected] {
+  background: hsl(190 100% 50% / 0.18) !important;
+  color: hsl(190 100% 90%) !important;
+}
+.cm-editor .cm-completionLabel {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
+}
+.cm-editor .cm-completionDetail {
+  color: hsl(200 30% 50%) !important;
+  font-style: italic !important;
+  margin-left: 8px !important;
+}
+.cm-editor .cm-completionIcon-function::after {
+  content: "fn" !important;
+  color: hsl(190 100% 50%) !important;
+  font-size: 10px !important;
+}
+.cm-editor .cm-completionIcon-keyword::after {
+  content: "kw" !important;
+  color: hsl(160 100% 45%) !important;
+  font-size: 10px !important;
+}
