@@ -9,6 +9,7 @@ interface OceanGridProps {
   isRunning: boolean;
   isComplete: boolean;
   direction: "right" | "left" | "up" | "down";
+  worldId?: number;
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -17,7 +18,7 @@ interface OceanGridProps {
 
 /** Submarine — side-profile with porthole, hull, propeller, and glow */
 const SubmarineSprite = ({ isRunning }: { isRunning: boolean }) => (
-  <svg width="56" height="28" viewBox="0 0 56 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg width="56" height="28" viewBox="0 0 56 28" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform: "scaleX(-1)" }}>
     <defs>
       <filter id="subGlow">
         <feGaussianBlur stdDeviation="2" result="blur" />
@@ -190,7 +191,8 @@ const DIRECTION_ROTATION: Record<string, number> = {
   up: -90,
 };
 
-const OceanGrid = ({ grid, subPos, isRunning, isComplete, direction }: OceanGridProps) => {
+const OceanGrid = ({ grid, subPos, isRunning, isComplete, direction, worldId }: OceanGridProps) => {
+  const showGrid = worldId === 5;
   const rows = grid.length;
   const cols = grid[0]?.length || 0;
   const containerRef = useRef<HTMLDivElement>(null);
@@ -262,6 +264,57 @@ const OceanGrid = ({ grid, subPos, isRunning, isComplete, direction }: OceanGrid
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* ── Grid overlay (World 5 only) ───────────────────────── */}
+      {showGrid && (
+        <>
+          {/* Cell grid */}
+          {grid.map((row, r) =>
+            row.map((_, c) => (
+              <div
+                key={`cell-${r}-${c}`}
+                className="absolute ocean-grid-cell"
+                style={{
+                  left: offset.x + c * cellSize,
+                  top: offset.y + r * cellSize,
+                  width: cellSize,
+                  height: cellSize,
+                }}
+              />
+            ))
+          )}
+          {/* Column labels (top) */}
+          {grid[0]?.map((_, c) => (
+            <div
+              key={`col-${c}`}
+              className="absolute flex items-center justify-center text-[9px] font-mono text-rose-300/50 pointer-events-none"
+              style={{
+                left: offset.x + c * cellSize,
+                top: offset.y - 14,
+                width: cellSize,
+                height: 14,
+              }}
+            >
+              {c}
+            </div>
+          ))}
+          {/* Row labels (left) */}
+          {grid.map((_, r) => (
+            <div
+              key={`row-${r}`}
+              className="absolute flex items-center justify-center text-[9px] font-mono text-rose-300/50 pointer-events-none"
+              style={{
+                left: offset.x - 16,
+                top: offset.y + r * cellSize,
+                width: 16,
+                height: cellSize,
+              }}
+            >
+              {r}
+            </div>
+          ))}
+        </>
+      )}
 
       {/* ── Entities positioned directly in the full-bleed area ─── */}
       {grid.map((row, r) =>

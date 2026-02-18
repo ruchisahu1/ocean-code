@@ -176,13 +176,14 @@ const OceanScene = () => {
           className="absolute"
           style={{
             top: `${f.y}%`,
-            transform: f.flip ? "scaleX(-1)" : undefined,
             filter: `drop-shadow(0 0 8px ${f.color}88)`,
           }}
           animate={{ x: f.flip ? ["110vw", "-10vw"] : ["-10vw", "110vw"] }}
           transition={{ duration: f.duration, delay: f.delay, repeat: Infinity, ease: "linear" }}
         >
-          <SvgFish color={f.color} accentColor={f.accent} size={f.size} />
+          <div style={f.flip ? undefined : { transform: "scaleX(-1)" }}>
+            <SvgFish color={f.color} accentColor={f.accent} size={f.size} />
+          </div>
         </motion.div>
       ))}
 

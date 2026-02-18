@@ -259,6 +259,200 @@
   animation: dust-drift 10s ease-in-out infinite;
 }
 
+/* ── Cave scene: crystal pulse ───────────────────────────────── */
+@keyframes crystal-pulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50%      { opacity: 0.8; transform: scale(1.08); }
+}
+
+.animate-crystal-pulse {
+  animation: crystal-pulse 5s ease-in-out infinite;
+}
+
+/* ── Cave scene: bioluminescent float ────────────────────────── */
+@keyframes biolum-float {
+  0%, 100% { transform: translate(0, 0); }
+  25%      { transform: translate(3px, -5px); }
+  50%      { transform: translate(-2px, 2px); }
+  75%      { transform: translate(4px, -3px); }
+}
+
+.animate-biolum-float {
+  animation: biolum-float 12s ease-in-out infinite;
+}
+
+/* ── Trench scene: anglerfish lure glow ─────────────────────── */
+@keyframes angler-glow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  30%      { opacity: 0.9; transform: scale(1.15); }
+  60%      { opacity: 0.5; transform: scale(0.95); }
+  80%      { opacity: 1;   transform: scale(1.1); }
+}
+
+.animate-angler-glow {
+  animation: angler-glow 4s ease-in-out infinite;
+}
+
+/* ── Trench scene: thermal vent heat shimmer ────────────────── */
+@keyframes vent-shimmer {
+  0%, 100% { opacity: 0.6; transform: scaleY(1) translateX(0); }
+  25%      { opacity: 0.8; transform: scaleY(1.04) translateX(2px); }
+  50%      { opacity: 0.5; transform: scaleY(0.97) translateX(-1px); }
+  75%      { opacity: 0.7; transform: scaleY(1.02) translateX(1px); }
+}
+
+.animate-vent-shimmer {
+  animation: vent-shimmer 5s ease-in-out infinite;
+}
+
+/* ── Trench scene: deep-sea particle drift ──────────────────── */
+@keyframes deep-particle {
+  0%, 100% { transform: translate(0, 0); opacity: 0.15; }
+  25%      { transform: translate(2px, -4px); opacity: 0.4; }
+  50%      { transform: translate(-1px, 1px); opacity: 0.2; }
+  75%      { transform: translate(3px, -2px); opacity: 0.5; }
+}
+
+.animate-deep-particle {
+  animation: deep-particle 15s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ABYSS SCENE (World 5) — The Majestic One
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Aurora Borealis flowing bands ─────────────────────────────── */
+@keyframes abyss-aurora-wave {
+  0%   { transform: translateX(-8%) scaleY(1)    ; opacity: 0.7; }
+  25%  { transform: translateX(4%)  scaleY(1.15) ; opacity: 1;   }
+  50%  { transform: translateX(10%) scaleY(0.9)  ; opacity: 0.8; }
+  75%  { transform: translateX(2%)  scaleY(1.1)  ; opacity: 1;   }
+  100% { transform: translateX(-8%) scaleY(1)    ; opacity: 0.7; }
+}
+.abyss-aurora {
+  animation: abyss-aurora-wave 28s ease-in-out infinite;
+}
+
+/* ── Aurora color shift ────────────────────────────────────────── */
+@keyframes abyss-aurora-color-shift {
+  0%, 100% { filter: blur(25px) hue-rotate(0deg); }
+  50%      { filter: blur(30px) hue-rotate(30deg); }
+}
+.abyss-aurora-color {
+  animation:
+    abyss-aurora-wave 24s ease-in-out infinite,
+    abyss-aurora-color-shift 20s ease-in-out infinite;
+}
+
+/* ── Star twinkle ──────────────────────────────────────────────── */
+@keyframes abyss-star-twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50%      { opacity: 0.9; transform: scale(1.2); }
+}
+.abyss-star-twinkle {
+  animation: abyss-star-twinkle 4s ease-in-out infinite;
+}
+
+/* ── Volumetric light beam sway ────────────────────────────────── */
+@keyframes abyss-beam-sway {
+  0%, 100% { transform: rotate(-2deg); opacity: 0.6; }
+  33%      { transform: rotate(1.5deg); opacity: 1;   }
+  66%      { transform: rotate(-1deg);  opacity: 0.7; }
+}
+.abyss-beam-sway {
+  animation: abyss-beam-sway 12s ease-in-out infinite;
+}
+
+/* ── Whale drift (slow horizontal traversal) ───────────────────── */
+@keyframes abyss-whale-drift {
+  0%   { transform: translateX(-25%); }
+  100% { transform: translateX(125%); }
+}
+.abyss-whale-drift {
+  animation: abyss-whale-drift 65s linear infinite;
+}
+
+/* ── Manta ray glide (opposite direction, slight vertical wave) ── */
+@keyframes abyss-manta-glide {
+  0%   { transform: translateX(125%) translateY(0);     }
+  25%  { transform: translateX(90%)  translateY(-8px);  }
+  50%  { transform: translateX(55%)  translateY(4px);   }
+  75%  { transform: translateX(20%)  translateY(-6px);  }
+  100% { transform: translateX(-25%) translateY(0);     }
+}
+.abyss-manta-glide {
+  animation: abyss-manta-glide 45s linear infinite;
+}
+
+/* ── Jellyfish floating bob ────────────────────────────────────── */
+@keyframes abyss-jellyfish-float {
+  0%, 100% { transform: translateY(0)     rotate(0deg);   }
+  25%      { transform: translateY(-12px) rotate(2deg);   }
+  50%      { transform: translateY(-6px)  rotate(-1deg);  }
+  75%      { transform: translateY(-15px) rotate(1.5deg); }
+}
+.abyss-jellyfish-float {
+  animation: abyss-jellyfish-float 8s ease-in-out infinite;
+}
+
+/* ── Jellyfish tentacle wave ───────────────────────────────────── */
+@keyframes abyss-jellyfish-tentacle-wave {
+  0%, 100% { transform: scaleY(1)    translateX(0);   }
+  30%      { transform: scaleY(1.08) translateX(1px); }
+  70%      { transform: scaleY(0.95) translateX(-1px);}
+}
+.abyss-jellyfish-tentacle {
+  animation: abyss-jellyfish-tentacle-wave 3s ease-in-out infinite;
+}
+
+/* ── Plankton cloud drift ──────────────────────────────────────── */
+@keyframes abyss-plankton-drift {
+  0%, 100% { transform: translate(0, 0);        opacity: 0.3; }
+  25%      { transform: translate(5px, -8px);   opacity: 0.7; }
+  50%      { transform: translate(-3px, -4px);  opacity: 0.4; }
+  75%      { transform: translate(4px, -10px);  opacity: 0.8; }
+}
+.abyss-plankton-drift {
+  animation: abyss-plankton-drift 12s ease-in-out infinite;
+}
+
+/* ── Current flow sweep ────────────────────────────────────────── */
+@keyframes abyss-current-sweep {
+  0%   { transform: translateX(-100%); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateX(calc(100vw + 100%)); opacity: 0; }
+}
+.abyss-current-sweep {
+  animation: abyss-current-sweep 15s linear infinite;
+}
+
+/* ── World 5 card glow (rose-gold) ─────────────────────────────── */
+.box-glow-rose {
+  box-shadow: 0 0 15px rgba(255, 100, 150, 0.25),
+              0 0 40px rgba(255, 100, 150, 0.1),
+              inset 0 0 15px rgba(255, 100, 150, 0.05);
+}
+
+/* ── World 5 grid overlay cells ────────────────────────────────── */
+.ocean-grid-cell {
+  border: 1px solid rgba(255, 120, 180, 0.12);
+  background: rgba(255, 120, 180, 0.03);
+  pointer-events: none;
+}
+
+/* ── World 5 header aurora shimmer ─────────────────────────────── */
+@keyframes aurora-shimmer {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.aurora-shimmer-bg {
+  background: linear-gradient(90deg, rgba(255,100,150,0.08), rgba(80,200,255,0.08), rgba(160,80,255,0.08), rgba(255,100,150,0.08));
+  background-size: 300% 100%;
+  animation: aurora-shimmer 8s ease-in-out infinite;
+}
+
 /* CodeMirror theme overrides */
 .cm-editor {
   background: hsl(216 50% 6%) !important;
@@ -280,6 +474,13 @@
 }
 .cm-editor .cm-cursor {
   border-left-color: hsl(190 100% 50%) !important;
+}
+
+/* Step mode: active line highlight */
+.cm-step-highlight {
+  background: hsl(50 100% 50% / 0.12) !important;
+  border-left: 3px solid hsl(50 100% 55%) !important;
+  transition: background 0.2s ease;
 }
 
 /* Autocomplete dropdown styling */
