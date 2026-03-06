@@ -15,7 +15,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+      <BrowserRouter basename="/user/gamified/Ocean-Game-Coder">
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/worlds" element={<WorldSelection />} />
